@@ -1,0 +1,26 @@
+{
+  "name": "stephangroen/tesla-php-client",
+  "type": "library",
+  "description": "A PHP Client for the Tesla API",
+  "keywords": [
+    "api",
+    "php",
+    "tesla"
+  ],
+  "homepage": "http://github.com/stephangroen/testla-php-client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Stephan Groen",
+      "email": "mail@stephangroen.nl"
+    }
+  ],
+  "require": {
+    "php": ">=7.0.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "StephanGroen\\Tesla\\": "src/StephanGroen/Tesla"
+    }
+  }
+}
