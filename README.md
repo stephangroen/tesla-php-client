@@ -11,18 +11,23 @@ This project can easily be installed through Composer.
 composer require stephangroen/tesla-php-client
 ```
 
-## Getting Started
-Before you can start, you will first need to get an access token. This is a one-time process. Fortunatly the client makes this very simple. You need your email address and password you use for My Tesla.
+## One-time authentication process
+Before you can start, you will first need to get an access token. This is a one-time process. Fortunatly the client makes this very simple. Get the client_id and client_secret here: http://pastebin.com/fX6ejAHd. You need to add them to you environment via a .env file in your existing project or use the functions supplied by the client. You need your email address and password you use for My Tesla. With these credentials you can get the access token.
 ```php
 $tesla = new StephanGroen\Tesla\Tesla();
+$tesla->setClientId('client_id_here');
+$tesla->setClientSecret('client_secret_here');
 $accessToken = $tesla->getAccessToken('your_username', 'your_password');
 ```
-Save the access token for future use. Next time you'd like to use the client, initiate it with the access token:
+The access token is the only authentication token you need after this one-time process.
+
+## Use the client
+Next time you'd like to use the client, initiate it with the access token:
 ```php
 $tesla = new StephanGroen\Tesla\Tesla('your_access_token');
 ```
 ## Get and set your vehicle id
-In order to execute vehicle specific calls, you need your vehicle id. In order to get this you request all vehicles for your account:
+In order to execute vehicle specific calls, you need your vehicle id. Retrieve this by requesting all vehicles for your account:
 ```php
 $tesla = new StephanGroen\Tesla\Tesla();
 $tesla->vehicles();
@@ -44,3 +49,6 @@ So, for every use you initiate the client and set the vehicle id to execute call
 
 ## Client response
 All calls just return an array with the data as described in the API docs mentioned above.
+
+## 408 responses
+You might get some 408 responses when your vehicle still needs to wake up. Wait for a moment and try again.
