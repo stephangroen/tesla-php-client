@@ -24,6 +24,16 @@ class Tesla
         $this->vehicleId = $vehicleId;
     }
 
+    public function setClientId(string $clientId)
+    {
+        putenv('TESLA_CLIENT_ID=' . $clientId);
+    }
+
+    public function setClientSecret(string $clientSecret)
+    {
+        putenv('TESLA_CLIENT_SECRET=' . $clientSecret);
+    }
+
     public function mobileEnabled() : bool
     {
         return $this->sendRequest('/mobile_enabled')['response'];
@@ -167,8 +177,8 @@ class Tesla
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             'grant_type' => 'password',
-            'client_id' => 'e4a9949fcfa04068f59abb5a658f2bac0a3428e4652315490b659d5ab3f35a9e',
-            'client_secret' => 'c75f14bbadc8bee3a7594412c31416f8300256d7668ea7e6e7f06727bfb9d220',
+            'client_id' => getenv('TESLA_CLIENT_ID'),
+            'client_secret' => getenv('TESLA_CLIENT_SECRET'),
             'email' => $username,
             'password' => $password,
         ]));
