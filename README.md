@@ -49,3 +49,6 @@ So, for every use you initiate the client and set the vehicle id to execute call
 
 ## Client response
 All calls just return an array with the data as described in the API docs mentioned above.
+
+## 408 responses
+You might get some 408 responses when your vehicle still needs to wake up. Wait for a moment and try again.
