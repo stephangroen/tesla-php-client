@@ -27,7 +27,7 @@ Next time you'd like to use the client, initiate it with the access token:
 $tesla = new StephanGroen\Tesla\Tesla('your_access_token');
 ```
 ## Get and set your vehicle id
-In order to execute vehicle specific calls, you need your vehicle id. In order to get this you request all vehicles for your account:
+In order to execute vehicle specific calls, you need your vehicle id. Retrieve this by requesting all vehicles for your account:
 ```php
 $tesla = new StephanGroen\Tesla\Tesla();
 $tesla->vehicles();
