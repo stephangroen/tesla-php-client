@@ -21,13 +21,26 @@ Save the access token for future use. Next time you'd like to use the client, in
 ```php
 $tesla = new StephanGroen\Tesla\Tesla('your_access_token');
 ```
+## Get and set your vehicle id
+In order to execute vehicle specific calls, you need your vehicle id. In order to get this you request all vehicles for your account:
+```php
+$tesla = new StephanGroen\Tesla\Tesla();
+$tesla->vehicles();
+```
+This will return an array with information about your vehicles. Extract the `id` from the respone, not the `vehicle_id` which is used for Tesla internal purposes. You might want to store this id locally for future use. When you have the id, let the client know as follows:
+```php
+$tesla = new StephanGroen\Tesla\Tesla();
+$tesla->setVehicleId(123);
+```
 
 ## Example call
 Calls are very simple, read the source code and API docs to find out all available calls. For example, set the charge limit to 90 percent:
 ```php
-$tesla = new StephanGroen\Tesla\Tesla();
+$tesla = new StephanGroen\Tesla\Tesla('87dsfg76sdfg765sdfg765dsfg76fgds76');
+$tesla->setVehicleId(123);
 $tesla->setChargeLimit(90);
 ```
+So, for every use you initiate the client and set the vehicle id to execute calls for.
 
 ## Client response
 All calls just return an array with the data as described in the API docs mentioned above.
