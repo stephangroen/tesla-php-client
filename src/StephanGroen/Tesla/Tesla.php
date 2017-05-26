@@ -14,6 +14,11 @@ class Tesla
         $this->accessToken = $accessToken;
     }
 
+    public function setAccessToken(string $accessToken)
+    {
+        $this->accessToken = $accessToken;
+    }
+
     public function vehicles()
     {
         return $this->sendRequest('/vehicles');
