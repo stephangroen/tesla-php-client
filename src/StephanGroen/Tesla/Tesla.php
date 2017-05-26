@@ -251,3 +251,4 @@ class Tesla
         return $apiResultJson ?? $apiResult;
     }
 }
+
