@@ -106,7 +106,10 @@ class Tesla
 
     public function setChargeLimit(int $percent = 90) : array
     {
-        return $this->sendRequest('/command/set_charge_limit?percent=' . $percent, [], 'POST')['response'];
+        $params = [
+            'percent' => "$percent"
+        ];
+        return $this->sendRequest('/command/set_charge_limit', $params, 'POST')['response'];
     }
 
     public function startCharging() : array
