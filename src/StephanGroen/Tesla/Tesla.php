@@ -19,6 +19,10 @@ class Tesla
         $this->accessToken = $accessToken;
     }
 
+    public function allData() : array
+    {
+        return $this->sendRequest('/data')['response'];
+    }
     public function vehicles()
     {
         return $this->sendRequest('/vehicles');
