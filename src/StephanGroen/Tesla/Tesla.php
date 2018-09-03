@@ -19,6 +19,10 @@ class Tesla
         $this->accessToken = $accessToken;
     }
 
+    public function allData() : array
+    {
+        return $this->sendRequest('/data')['response'];
+    }
     public function vehicles()
     {
         return $this->sendRequest('/vehicles');
@@ -182,6 +186,8 @@ class Tesla
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
             'Accept: application/json',
+            'User-Agent: Mozilla/5.0 (Linux; Android 9.0.0; VS985 4G Build/LRX21Y; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36',
+            'X-Tesla-User-Agent: TeslaApp/3.4.4-350/fad4a582e/android/9.0.0',
         ]);
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
             'grant_type' => 'password',
@@ -216,6 +222,8 @@ class Tesla
         curl_setopt($ch, CURLOPT_HTTPHEADER, [
             'Content-Type: application/json',
             'Accept: application/json',
+            'User-Agent: Mozilla/5.0 (Linux; Android 9.0.0; VS985 4G Build/LRX21Y; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36',
+            'X-Tesla-User-Agent: TeslaApp/3.4.4-350/fad4a582e/android/9.0.0',
             'Authorization: Bearer ' . $this->accessToken,
         ]);
 
