@@ -176,6 +176,19 @@ class Tesla
         return $this->sendRequest('/command/trunk_open?which_trunk=rear', [], 'POST')['response'];
     }
 
+    public function setNavigation($location) : array
+    {
+        $params = [
+            'type' => 'share_ext_content_raw',
+            'value' => [
+                'android.intent.extra.TEXT' => $location
+            ],
+            'locale' => 'en-US',
+            'timestamp_ms' => time(),
+        ];
+        return $this->sendRequest('/command/navigation_request', $params, 'POST')['response'];
+    }
+
     public function getAccessToken(string $username, string $password)
     {
         $ch = curl_init();
