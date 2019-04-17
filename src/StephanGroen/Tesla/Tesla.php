@@ -73,6 +73,11 @@ class Tesla
         return $this->sendRequest('/data_request/vehicle_state')['response'];
     }
 
+    public function vehicleConfig() : array
+    {
+        return $this->sendRequest('/data_request/vehicle_config')['response'];
+    }
+
     public function wakeUp() : array
     {
         return $this->sendRequest('/wake_up', [], 'POST')['response'];
