@@ -1,7 +1,7 @@
 # tesla-php-client
 A PHP client for easy integration of the Tesla API
 
-This client is very basic, so most changes to the Tesla API will automatically be accomodated for. You can find the docs of the API at http://docs.timdorr.apiary.io
+This client is very basic, so most changes to the Tesla API will automatically be accomodated for. You can find the docs of the API at https://tesla-api.timdorr.com/
 
 
 ## Installation
