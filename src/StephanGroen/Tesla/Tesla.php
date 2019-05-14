@@ -23,9 +23,15 @@ class Tesla
     {
         return $this->sendRequest('/data')['response'];
     }
+
     public function vehicles()
     {
         return $this->sendRequest('/vehicles');
+    }
+
+    public function vehicle()
+    {
+        return $this->sendRequest('')['response'];
     }
 
     public function setVehicleId(int $vehicleId)
