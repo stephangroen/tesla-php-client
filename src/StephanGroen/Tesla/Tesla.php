@@ -74,6 +74,11 @@ class Tesla
         return $this->sendRequest('/data_request/gui_settings')['response'];
     }
 
+    public function vehicleData() : array
+    {
+        return $this->sendRequest('/vehicle_data')['response'];
+    }
+
     public function vehicleState() : array
     {
         return $this->sendRequest('/data_request/vehicle_state')['response'];
