@@ -21,7 +21,7 @@ class Tesla
 
     public function allData() : array
     {
-        return $this->sendRequest('/data')['response'];
+        return $this->sendRequest('/vehicle_data')['response'];
     }
 
     public function vehicles()
