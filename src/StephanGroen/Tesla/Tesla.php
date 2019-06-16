@@ -187,7 +187,7 @@ class Tesla
         return $this->sendRequest('/command/trunk_open?which_trunk=rear', [], 'POST')['response'];
     }
 
-    public function setNavigation($location) : array
+    public function setNavigation(string $location) : array
     {
         $params = [
             'type' => 'share_ext_content_raw',
