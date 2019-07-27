@@ -231,6 +231,36 @@ class Tesla
         return $apiResultJson;
     }
 
+    public function refreshAccessToken(string $refreshToken)
+    {
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $this->tokenUrl);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+      curl_setopt($ch, CURLOPT_POST, true);
+      curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Accept: application/json',
+        'User-Agent: Mozilla/5.0 (Linux; Android 9.0.0; VS985 4G Build/LRX21Y; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/58.0.3029.83 Mobile Safari/537.36',
+        'X-Tesla-User-Agent: TeslaApp/3.4.4-350/fad4a582e/android/9.0.0',
+      ]);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode([
+        'grant_type' => 'refresh_token',
+        'client_id' => getenv('TESLA_CLIENT_ID'),
+        'client_secret' => getenv('TESLA_CLIENT_SECRET'),
+        'refresh_token' => $refreshToken,
+      ]));
+
+      $apiResult = curl_exec($ch);
+      $apiResultJson = json_decode($apiResult, true);
+
+      curl_close($ch);
+
+      $this->accessToken = $apiResultJson['access_token'];
+
+      return $apiResultJson;
+    }
+
     protected function sendRequest(string $endpoint, array $params = [], string $method = 'GET')
     {
         $ch = curl_init();
