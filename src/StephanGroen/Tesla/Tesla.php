@@ -89,9 +89,9 @@ class Tesla
         return $this->sendRequest('/wake_up', [], 'POST')['response'];
     }
 
-    public function startSoftwareUpdate() : array
+    public function startSoftwareUpdate( int $seconds = 0 ) : array
     {
-        return $this->sendRequest('/command/schedule_software_update', [ 'offset_sec' => 0 ], 'POST')['response'];
+        return $this->sendRequest('/command/schedule_software_update', [ 'offset_sec' => $seconds ], 'POST')['response'];
     }
 
     public function setValetMode(bool $active = false, int $pin = 0000) : array
