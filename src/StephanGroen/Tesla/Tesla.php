@@ -162,9 +162,9 @@ class Tesla
         return $this->sendRequest('/command/door_lock', [], 'POST')['response'];
     }
 
-    public function windowControl(string $state = 'close') : array
+    public function windowControl(string $state = 'close', int $lat = 0, int $lon = 0) : array
     {
-        return $this->sendRequest('/command/window_control', [ 'command' => $state, 'lat' => 0, 'lon' => 0 ], 'POST')['response'];
+        return $this->sendRequest('/command/window_control', [ 'command' => $state, 'lat' => $lat, 'lon' => $lon ], 'POST')['response'];
     }
 
     public function setTemperature(float $driverDegreesCelcius = 20.0, float $passengerDegreesCelcius = 20.0) : array
