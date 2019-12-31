@@ -89,6 +89,11 @@ class Tesla
         return $this->sendRequest('/wake_up', [], 'POST')['response'];
     }
 
+    public function startSoftwareUpdate( int $seconds = 0 ) : array
+    {
+        return $this->sendRequest('/command/schedule_software_update', [ 'offset_sec' => $seconds ], 'POST')['response'];
+    }
+
     public function setValetMode(bool $active = false, int $pin = 0000) : array
     {
         $params = [
@@ -157,6 +162,11 @@ class Tesla
         return $this->sendRequest('/command/door_lock', [], 'POST')['response'];
     }
 
+    public function windowControl(string $state = 'close', int $lat = 0, int $lon = 0) : array
+    {
+        return $this->sendRequest('/command/window_control', [ 'command' => $state, 'lat' => $lat, 'lon' => $lon ], 'POST')['response'];
+    }
+
     public function setTemperature(float $driverDegreesCelcius = 20.0, float $passengerDegreesCelcius = 20.0) : array
     {
         return $this->sendRequest('/command/set_temps?driver_temp=' . $driverDegreesCelcius . '&passenger_temp=' . $passengerDegreesCelcius, [], 'POST')['response'];
@@ -184,7 +194,12 @@ class Tesla
 
     public function openTrunk() : array
     {
-        return $this->sendRequest('/command/trunk_open?which_trunk=rear', [], 'POST')['response'];
+        return $this->sendRequest('/command/actuate_trunk', [ 'which_trunk' => 'rear' ], 'POST')['response'];
+    }
+
+    public function openFrunk() : array
+    {
+        return $this->sendRequest('/command/actuate_trunk', [ 'which_trunk' => 'front' ], 'POST')['response'];
     }
 
     public function setNavigation(string $location) : array
